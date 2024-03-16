@@ -168,6 +168,3 @@ class Userbot(Client):
                 await self.five.stop()
         except:
             pass
-self.five.stop()
-        except:
-            pass
