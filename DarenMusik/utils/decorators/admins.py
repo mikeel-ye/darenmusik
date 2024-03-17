@@ -201,7 +201,3 @@ def ActualAdminCB(mystic):
         return await mystic(client, CallbackQuery, _)
 
     return wrapper
-       return
-        return await mystic(client, CallbackQuery, _)
-
-    return wrapper
