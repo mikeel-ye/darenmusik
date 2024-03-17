@@ -59,13 +59,4 @@ async def init():
 
 
 if name == "main":
-    asyncio.get_event_loop().run_until_complete(init())73\x73\x6f\x63\x69\x61\x74\x69\x6f\x6e"
-    )
-    await idle()
-    await app.stop()
-    await userbot.stop()
-    LOGGER("AnonXMusic").info("Stopping AnonX Music Bot...")
-
-
-if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(init())
