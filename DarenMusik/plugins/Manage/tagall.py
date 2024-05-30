@@ -38,9 +38,8 @@ async def isAdmin(filter, client, update):
 
     return member.status in [STATUS.OWNER, STATUS.ADMINISTRATOR]
 
-Admin = filters.create(isAdmin)
 
-@Bot.on_message(filters.command("all") & filters.group & Admin)
+@app.on_message(filters.command("all") & filters.group)
 async def tag_all_users(_,message): 
     replied = message.reply_to_message  
     if len(message.command) < 2 and not replied:
@@ -85,7 +84,7 @@ async def tag_all_users(_,message):
         except Exception:
             pass
 
-@Bot.on_message(filters.command("cancel") & filters.group & Admin)
+@app.on_message(filters.command("cancel") & filters.group)
 async def untag(client, message: Message):
     if not message.chat.id in SPAM_CHATS:
         return await message.reply("**GAK ADA TAGALL TOLOL JANGAN GOBLOK LU.**")
