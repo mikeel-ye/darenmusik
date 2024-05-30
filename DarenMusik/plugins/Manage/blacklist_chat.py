@@ -17,7 +17,7 @@ from DarenMusik.utils.permission import adminsOnly, list_admins
 from DarenMusik.misc import SUDOERS as SUDO
 
 
-@app.on_message(filters.command("bl") & ~filters.private & Admin)
+@app.on_message(filters.command("bl") & ~filters.private)
 async def addblmessag(app : Bot, message : Message):
     trigger = get_arg(message)
     if message.reply_to_message:
