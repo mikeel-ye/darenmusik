@@ -17,8 +17,17 @@ from DarenMusik.utils.permission import adminsOnly, list_admins
 from DarenMusik.misc import SUDOERS as SUDO
 
 
-@app.on_message(filters.command("bl") & ~filters.private)
-async def addblmessag(app : Bot, message : Message):
+__MODULE__ = "Blacklist"
+__HELP__ = """
+/blacklisted - Get All The Blacklisted Words In The Chat.
+/blacklist [WORD|SENTENCE] - Blacklist A Word Or A Sentence.
+/whitelist [WORD|SENTENCE] - Whitelist A Word Or A Sentence.
+"""
+
+
+@app.on_message(filters.command("blacklist") & ~filters.private)
+@adminsOnly("can_restrict_members")
+async def addblmessag(_, message):
     trigger = get_arg(message)
     if message.reply_to_message:
         trigger = message.reply_to_message.text or message.reply_to_message.caption
@@ -34,12 +43,14 @@ async def addblmessag(app : Bot, message : Message):
     except:
         await app.send_message(message.chat.id, f"{trigger} `berhasil di tambahkan ke dalam blacklist..`")
 
-    await asyncio.sleep(1)
+    await asyncio.sleep(2)
     await xxnx.delete()
     await message.delete()
 
-@app.on_message(filters.command("delbl") & ~filters.private & Admin)
-async def deldblmessag(app : Bot, message : Message):
+
+@app.on_message(filters.command("whitelist") & ~filters.private)
+@adminsOnly("can_restrict_members")
+async def deldblmessag(_, message):
     trigger = get_arg(message)
     if message.reply_to_message:
         trigger = message.reply_to_message.text or message.reply_to_message.caption
@@ -55,30 +66,6 @@ async def deldblmessag(app : Bot, message : Message):
     except:
         await app.send_message(message.chat.id, f"{trigger} `berhasil di hapus dari blacklist..`")
 
-    await asyncio.sleep(1)
+    await asyncio.sleep(2)
     await xxnx.delete()
     await message.delete()
-
-
-@app.on_message(filters.text & ~filters.private & Member & Gcast)
-async def deletermessag(app : Bot, message : Message):
-    text = f"Maaf, Grup ini tidak terdaftar di dalam list. Silahkan hubungi @Darenrorr Untuk mendaftarkan Group Anda.\n\n**Bot akan meninggalkan group!**"
-    chat = message.chat.id
-    chats = await get_actived_chats()
-    if chat not in chats:
-        await message.reply(text=text)
-        await asyncio.sleep(5)
-        try:
-            await app.leave_chat(chat)
-        except UserNotParticipant as e:
-            print(e)
-        return
-
-    # Delete
-    try:
-        await message.delete()
-    except FloodWait as e:
-        await asyncio.sleep(e.value)
-        await message.delete()
-    except MessageDeleteForbidden:
-        pass
