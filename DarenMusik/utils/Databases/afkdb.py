@@ -1,4 +1,4 @@
-from DarenXMusik.utils.database import mongodb
+from DarenMusik.utils.database import mongodb
 
 afkdb = mongodb.afk
 
