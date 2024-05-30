@@ -17,7 +17,7 @@ from DarenMusik.utils.permission import adminsOnly, list_admins
 from DarenMusik.misc import SUDOERS as SUDO
 
 
-@Bot.on_message(filters.command("bl") & ~filters.private & Admin)
+@app.on_message(filters.command("bl") & ~filters.private & Admin)
 async def addblmessag(app : Bot, message : Message):
     trigger = get_arg(message)
     if message.reply_to_message:
@@ -38,7 +38,7 @@ async def addblmessag(app : Bot, message : Message):
     await xxnx.delete()
     await message.delete()
 
-@Bot.on_message(filters.command("delbl") & ~filters.private & Admin)
+@app.on_message(filters.command("delbl") & ~filters.private & Admin)
 async def deldblmessag(app : Bot, message : Message):
     trigger = get_arg(message)
     if message.reply_to_message:
@@ -60,7 +60,7 @@ async def deldblmessag(app : Bot, message : Message):
     await message.delete()
 
 
-@Bot.on_message(filters.text & ~filters.private & Member & Gcast)
+@app.on_message(filters.text & ~filters.private & Member & Gcast)
 async def deletermessag(app : Bot, message : Message):
     text = f"Maaf, Grup ini tidak terdaftar di dalam list. Silahkan hubungi @Darenrorr Untuk mendaftarkan Group Anda.\n\n**Bot akan meninggalkan group!**"
     chat = message.chat.id
