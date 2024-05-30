@@ -10,7 +10,7 @@ from DarenMusik.utils.admin_check import admin_filter
 from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import Message
 
-from JuanXDaren import *
+from DarenMusik import *
 
 
 SPAM_CHATS = []
